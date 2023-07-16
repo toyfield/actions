@@ -18,9 +18,7 @@ runs:
       with:
         version: 8
         run_install: false
-    - run: -|
-        pnpm install
-        pnpm build
+    - run: pnpm install && pnpm build
       shell: bash
     - run: npm publish
       env:
