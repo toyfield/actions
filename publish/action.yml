@@ -1,0 +1,28 @@
+name: 'pnpm build and npm publish'
+description: 'publish work'
+inputs:
+  token:  # publish token
+    description: 'token used to be publish'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        registry-url: https://npm.pkg.github.com/
+        scope: '@toyfield'
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        run_install: false
+    - run: -|
+        pnpm install
+        pnpm build
+      shell: bash
+    - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ inputs.token }}
+      shell: bash
