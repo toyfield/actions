@@ -22,5 +22,5 @@ runs:
       shell: bash
     - run: npm publish
       env:
-        NODE_AUTH_TOKEN: ${{ inputs.token }} || ${{ secrets.GITHUB_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       shell: bash
