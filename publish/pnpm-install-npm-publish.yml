@@ -2,8 +2,9 @@ name: 'pnpm build and npm publish'
 description: 'publish work'
 inputs:
   token:  # publish token
-    description: 'token used to be publish'
-    required: true
+    description: 'token used to be publish, if not set, will use GITHUB_TOKEN as default. GITHUB_TOKEN permission is not enough to publish, you need to modify the GITHUB_TOKEN permission to read and write packages'
+    required: false
+    default: ${{ secrets.GITHUB_TOKEN }}
 runs:
   using: "composite"
   steps:
