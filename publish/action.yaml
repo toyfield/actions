@@ -4,7 +4,6 @@ inputs:
   token:  # publish token
     description: 'token used to be publish, if not set, will use GITHUB_TOKEN as default. GITHUB_TOKEN permission is not enough to publish, you need to modify the GITHUB_TOKEN permission to read and write packages'
     required: false
-    default: ${{ secrets.GITHUB_TOKEN }}
 runs:
   using: "composite"
   steps:
@@ -23,5 +22,5 @@ runs:
       shell: bash
     - run: npm publish
       env:
-        NODE_AUTH_TOKEN: ${{ inputs.token }}
+        NODE_AUTH_TOKEN: ${{ inputs.token }} || ${{ secrets.GITHUB_TOKEN }}
       shell: bash
