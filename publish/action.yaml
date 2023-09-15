@@ -1,9 +1,5 @@
 name: 'pnpm build and npm publish'
 description: 'publish work'
-inputs:
-  token:  # publish token
-    description: 'token used to be publish, if not set, will use GITHUB_TOKEN as default. GITHUB_TOKEN permission is not enough to publish, you need to modify the GITHUB_TOKEN permission to read and write packages'
-    required: false
 runs:
   using: "composite"
   steps:
@@ -22,5 +18,5 @@ runs:
       shell: bash
     - run: npm publish
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ github.token }}
       shell: bash
